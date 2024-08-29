@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Mundur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .timer {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: greenyellow;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .message {
+            font-size: 24px;
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(236, 9, 9);
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hitung Mundur</h2>
+    <div class="timer" id="timer"></div>
+    <div id="message" class="message"></div> 
+    <div class="buttons">
+        <button id="startButton">Mulai</button>
+        <button id="stopButton">Berhenti</button>
+    </div>
+    
+    <script>
+        let timerInterval;
+        let timeLeft = 10; 
+        let isPaused = false; 
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft -= 1;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        document.getElementById('timer').textContent = "0:00";
+                        document.getElementById('message').innerHTML = "<h4>Waktu habis</h4>";  
+                    }
+                }, 1000);
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            isPaused = true; 
+            document.getElementById('message').textContent = "";  
+        }
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            if (isPaused || timeLeft === 10) {
+                isPaused = false;
+                startTimer();
+            }
+        });
+
+        document.getElementById('stopButton').addEventListener('click', () => {
+            stopTimer();
+        });
+
+        updateTimerDisplay();  
+    </script>
+</body>
+</html>

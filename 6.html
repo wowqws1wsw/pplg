@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Date Input Example</title>
+  <style>
+    .date-text {
+      color: red; 
+    }
+  </style>
+</head>
+<body>
+
+<h1></h1>
+<center>
+  <form id="dateForm">
+    <label for="date"></label>
+    <input type="date" id="date" name="date">
+    <input type="submit" value="Submit">
+  </form>
+
+  <p id="result">tidak mencari data</p>
+  </center>
+
+
+<script>
+  document.getElementById('dateForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const dateInput = document.getElementById('date').value;
+    if (dateInput) {
+      const date = new Date(dateInput);
+      
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const formattedDate = date.toLocaleDateString('id-ID', options); 
+      
+      const resultElement = document.getElementById('result');
+      resultElement.innerHTML = `Mencari data tanggal: <span class="date-text">${formattedDate}</span>`;
+    } else {
+      document.getElementById('result').textContent = 'tidak mencari data...';
+    }
+  });
+</script>
+
+</body>
+</html>

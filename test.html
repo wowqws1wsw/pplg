@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <select name="form" class="select_gender" id="gender" onchange="changeLabel(this)">
+            <option disabled hidden selected>Pilih</option>
+            <option value="ada">ada</option>
+            <option value="tidak">tidak</option>
+        </select>
+        <div id="name_wrapper" style="display:none;">
+            <label for="name">Nama <span id="text_change"></span></label>
+            <input type="text" id="name" name="name">
+            <label for="bri_id">Nomor ID Pegawai/KTA/PN/MP</label>
+            <input type="text" id="bri_id" name="bri_id">
+        </div>
+        <div id="additional_info" style="display:none;">
+            <label for="job">Pekerjaan</label>
+            <select id="job" name="job" onchange="showAdditionalFields(this)">
+                <option disabled hidden selected>Pilih Pekerjaan</option>
+                <option value="BRI">BRI</option>
+                <option value="Purnabakti">Purnabakti</option>
+            </select>
+        </div>
+        <div id="bri_fields" style="display:none;">
+            <label for="rekomendasi">Jabatan Perekomendasi</label>
+            <input type="text" id="rekomendasi" name="rekomendasi">
+        </div>
+        <button type="button">kembali</button>
+        <button type="button">Kirim</button>
+    </form>
+    <script>
+        function changeLabel(e) {
+            let nameWrapper = document.getElementById("name_wrapper");
+            let additionalInfo = document.getElementById("additional_info");
+            let briFields = document.getElementById("bri_fields");
+            let purnabaktiFields = document.getElementById("purnabakti_fields");
+
+            if (e.value == "ada") { 
+                nameWrapper.style.display = "block";
+                additionalInfo.style.display = "block";
+            } else if (e.value == "tidak") {   
+                nameWrapper.style.display = "none";
+                additionalInfo.style.display = "none";
+                briFields.style.display = "none";
+                purnabaktiFields.style.display = "none";
+            } else {
+                nameWrapper.style.display = "none";
+                additionalInfo.style.display = "none";
+                briFields.style.display = "none";
+                purnabaktiFields.style.display = "none";
+            }
+        }
+
+        function showAdditionalFields(e) {
+            let briFields = document.getElementById("bri_fields");
+            let purnabaktiFields = document.getElementById("purnabakti_fields");
+
+            if (e.value == "BRI") {
+                briFields.style.display = "block";
+                purnabaktiFields.style.display = "none";
+            } else if (e.value == "Purnabakti") {
+                briFields.style.display = "none";
+                purnabaktiFields.style.display = "block";
+            } else {
+                briFields.style.display = "none";
+                purnabaktiFields.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

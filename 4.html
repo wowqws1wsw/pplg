@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .image-container {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            border: 5px solid red;
+            box-sizing: border-box;
+        }
+
+        .circle {
+            border-radius: 50%;
+        }
+
+        .square {
+            border-radius: 0;
+        }
+
+        .triangle-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .triangle-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border: 5px solid red;
+            box-sizing: border-box;
+        }
+    </style>
+    <title>Image Selector</title>
+</head>
+<body>
+    <div>
+        <label for="image-select">Pilih Gambar:</label>
+        <select id="image-select">
+            <option value="elon-musk.webp">Gambar 1</option>
+            <option value="computer.jpg">Gambar 2</option>
+            <option value="kue.jpg">Gambar 3</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="shape-select">Pilih Bentuk:</label>
+        <select id="shape-select">
+            <option value="square">Kotak</option>
+            <option value="circle">Lingkaran</option>
+            <option value="triangle">Segitiga</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="border-select">Pilih Warna Border:</label>
+        <select id="border-select">
+            <option value="red">Merah</option>
+            <option value="yellow">Kuning</option>
+            <option value="green">Hijau</option>
+        </select>
+    </div>
+
+    <div class="image-container" id="image-container">
+        <img id="display-image" src="elon-musk.webp" height="600px" width="600px" alt="Gambar" class="square">
+    </div>
+
+    <script>
+        const imageSelect = document.getElementById('image-select');
+        const shapeSelect = document.getElementById('shape-select');
+        const borderSelect = document.getElementById('border-select');
+        const imageContainer = document.getElementById('image-container');
+        let displayImage = document.getElementById('display-image');
+
+        imageSelect.addEventListener('change', function () {
+            displayImage.src = this.value;
+        });
+
+        shapeSelect.addEventListener('change', function () {
+            const borderColor = borderSelect.value;
+            if (this.value === 'triangle') {
+                imageContainer.innerHTML = `
+                    <div class="triangle-container">
+                        <img src="${displayImage.src}" height="600px" width="600px" alt="Gambar" style="border-color: ${borderColor};">
+                    </div>`;
+            } else {
+                imageContainer.innerHTML = `<img id="display-image" src="${displayImage.src}" height="600px" width="600px" alt="Gambar" class="${this.value}" style="border: 5px solid ${borderColor};">`;
+            }
+            displayImage = document.querySelector('.image-container img');
+        });
+
+        borderSelect.addEventListener('change', function () {
+            const borderColor = this.value;
+            if (shapeSelect.value === 'triangle') {
+                const triangleElement = imageContainer.querySelector('.triangle-container img');
+                if (triangleElement) {
+                    triangleElement.style.borderColor = borderColor;
+                }
+            } else {
+                displayImage.style.borderColor = borderColor;
+            }
+        });
+    </script>
+</body>
+</html>

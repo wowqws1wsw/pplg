@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Belanja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <!--feather icons-->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .product {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: calc(33.333% - 40px);
+            box-sizing: border-box;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        .product-item h2 {
+            margin: 10px 0;
+        }
+
+        .product-item p {
+            margin: 0;
+        }
+
+        .product-item button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .product-item button:hover {
+            background-color: #575757;
+        }
+        
+        #more { display: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="computer.jpg" height="50px" alt="Logo">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Belanja</a></li>
+                <li><a href="#">Pengaturan</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Selamat Datang di Web Belanja Kami</h1>
+        <div class="product">
+            <div class="product-item">
+                <img src="laptop.png" alt="Laptop">
+                <h2>Laptop</h2>
+                <a href="#"><i data-feather="heart"></i>6jt</a><br>
+                <a href="#"><i data-feather="shopping-cart"></i>6jt</a><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi porro distinctio eaque? Quasi ipsa harum vitae, ea sunt quisquam nulla modi possimus commodi rem tempore officia itaque aliquid explicabo quidem in maiores ducimus perferendis tempora aliquam, quos minus repellat repellendus quam. Repudiandae facere eaque ratione.<span id="dots-laptop">...</span><span id="more-laptop" style="display:none;">Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+                <button onclick="toggleReadMore('dots-laptop', 'more-laptop', 'btn-laptop')" id="btn-laptop">Read more</button>
+                <button onclick="showAlert()">Beli Sekarang</button>
+            </div>
+            <div class="product-item">
+                <img src="minuman.jpg" alt="Minuman">
+                <h2>Minuman</h2>
+                <a href="#"><i data-feather="heart"></i>30k</a><br>
+                <a href="#"><i data-feather="shopping-cart"></i>20k</a><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis quas amet facere excepturi ducimus aperiam itaque esse saepe, possimus iste quam beatae laboriosam sequi eos, incidunt, provident rem dolor minus dolore! Ducimus asperiores, illum ipsa aliquam enim fugiat inventore nobis.<span id="dots-minuman">...</span><span id="more-minuman" style="display:none;">Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+                <button onclick="toggleReadMore('dots-minuman', 'more-minuman', 'btn-minuman')" id="btn-minuman">Read more</button>
+                <button onclick="showAlert()">Beli Sekarang</button>
+            </div>
+            <div class="product-item">
+                <img src="kue.jpg" alt="Kue">
+                <h2>Kue</h2>
+                <a href="#"><i data-feather="heart"></i>25k</a><br>
+                <a href="#"><i data-feather="shopping-cart"></i>20k</a><br>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur voluptate enim aut maxime dolores exercitationem quis fuga eaque quia vel totam magnam doloremque ducimus rerum iusto praesentium vero voluptatum, eos dicta a nisi! Dolor ducimus magni laudantium voluptatum distinctio quas.<span id="dots-kue">...</span><span id="more-kue" style="display:none;">Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+                <button onclick="toggleReadMore('dots-kue', 'more-kue', 'btn-kue')" id="btn-kue">Read more</button>
+                <button onclick="showAlert()">Beli Sekarang</button>
+            </div>
+        </div>
+    </main>
+
+     <script>
+        feather.replace();
+    </script>
+
+    <script>
+        function showAlert() {
+            alert("sudah dipesan");
+        }
+
+        function toggleReadMore(dotsId, moreId, btnId) {
+            var dots = document.getElementById(dotsId);
+            var moreText = document.getElementById(moreId);
+            var btnText = document.getElementById(btnId);
+
+            if (moreText.style.display === "none") {
+                moreText.style.display = "inline";
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+            } else {
+                moreText.style.display = "none";
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more";
+            }
+        }
+    </script>
+</body>
+</html>
